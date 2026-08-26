@@ -3,7 +3,7 @@
 - Matrícula: 2024014101
 - Turma: 2026.2
 - Data da prática: 26/08
-- 
+
 # Objetivo: 
 O que foi praticado nesta aula (FHS, navegação, criação com mkdir -p e permissões de diretórios).
 
