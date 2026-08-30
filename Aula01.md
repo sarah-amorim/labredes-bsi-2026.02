@@ -3,7 +3,7 @@
 - Curso: Sistemas de Informação
 - Turma: 2026.02
 - Data: 26/08/2026
-- Título da prática: 
+- Título da prática: Instalação e Configuração do Ubuntu Server 26.04 LTS utilizando Oracle VM VirtualBox
 
 ---
 
