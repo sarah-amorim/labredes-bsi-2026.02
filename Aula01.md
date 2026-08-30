@@ -5,12 +5,8 @@
 - Data: 26/08/2026
 - Título da prática: Instalação e Configuração do Ubuntu Server 26.04 LTS utilizando Oracle VM VirtualBox
 
----
-
 ## 2. Objetivo da Prática
 Esta atividade teve como propósito principal a aplicação prática de conceitos de virtualização, com foco no uso de um Hypervisor Tipo 2 para o isolamento e gerenciamento de recursos. A aula consistiu na criação de uma máquina virtual no Oracle VM VirtualBox, na instalação do sistema operacional Ubuntu Server 26.04 LTS e na execução de testes via linha de comando para validar a conectividade de rede, o particionamento do disco e a comunicação com os repositórios de pacotes.
-
----
 
 ## 3. Especificações do Ambiente
 * **Máquina Hospedeira (Host):** Sistema Operacional Windows 10/11
@@ -23,15 +19,13 @@ Esta atividade teve como propósito principal a aplicação prática de conceito
   * **Armazenamento:** 32 GB (Disco virtual tipo VDI, com alocação dinâmica)
   * **Configuração de Rede:** Adaptador configurado em NAT (Interface `enp0s3`)
 
----
+<img width="440" height="676" alt="Captura de tela das configurações da VM" src="https://github.com/user-attachments/assets/ca838156-e96c-43c3-925b-b7fe5210a83f" />
 
 ## 4. Passos Executados
 1. **Preparação do Ambiente Físico:** Organização dos diretórios no sistema host para armazenar o disco virtual e a imagem ISO, garantindo um espaço de trabalho isolado.
 2. **Criação e Configuração da VM:** Provisionamento da máquina virtual no VirtualBox, ajustando os recursos de hardware (memória, processador e disco VDI) para garantir um ambiente estável para o sistema.
 3. **Instalação do SO:** Inicialização da VM a partir da imagem ISO e execução do processo de instalação do Ubuntu Server 26.04 LTS.
 4. **Testes Pós-Instalação:** Acesso ao terminal do servidor virtualizado (CLI) para verificação do ambiente, incluindo testes de interface de rede, análise de armazenamento e checagem de atualizações.
-
----
 
 ## 5. Validação do Ambiente (Comandos e Evidências)
 
@@ -41,6 +35,7 @@ Para garantir que o servidor estava conectado à rede, executamos o comando de v
 ```bash
 ip addr
 ```
+<img width="878" height="815" alt="Verificação de rede ip addr" src="https://github.com/user-attachments/assets/acb4e534-39ba-4657-980e-e9c696e0cd68" />
 
 **Resultado:** O comando confirmou que a interface `enp0s3` subiu corretamente, recebendo o endereço IPv4 `10.0.2.15/24` via DHCP. Esse comportamento é o padrão esperado para redes configuradas em modo NAT no VirtualBox.
 
@@ -49,6 +44,7 @@ Para verificar o layout das partições e o consumo de disco, utilizamos o segui
 ```bash
 df -h
 ```
+<img width="895" height="810" alt="Mapeamento de disco df -h" src="https://github.com/user-attachments/assets/deac7c73-2413-4b83-9de5-8874772b0744" />
 
 **Resultado:** Identificamos que a partição primária `/dev/sda2` foi montada no diretório raiz (`/`). O espaço total alocado foi de 33 GB, dos quais apenas 3.1 GB estavam sendo utilizados no momento, deixando bastante espaço livre (cerca de 28 GB) para atividades futuras.
 
@@ -57,10 +53,9 @@ O último teste consistiu em validar a saída para a internet e a integridade do
 ```bash
 sudo apt-get update
 ```
+<img width="852" height="812" alt="Atualização de pacotes apt-get" src="https://github.com/user-attachments/assets/9b332388-3906-4647-ad82-8ab971cdeb57" />
 
 **Resultado:** A comunicação com os servidores oficiais da Canonical (archive.ubuntu.com) ocorreu com sucesso, atualizando as listas de pacotes do sistema sem apresentar falhas de conexão.
-
----
 
 ## 6. Desafios Enfrentados e Soluções Adotadas
 
@@ -69,13 +64,16 @@ sudo apt-get update
 * **Causa:** Verificamos que a configuração inicial alocou apenas 512 MB de memória RAM para a VM, quantidade insuficiente para suportar o processo de instalação do Ubuntu.
 * **Solução:** A máquina virtual foi desligada, e a memória base foi redimensionada para 2 GB (2048 MB) nas configurações do VirtualBox. Após essa alteração, o processo de instalação foi refeito e concluído com sucesso.
 
+<img width="1292" height="796" alt="Erro de curtin na instalação" src="https://github.com/user-attachments/assets/b1f31ff9-4acd-47e3-bc40-329fced3ba43" />
 
 ### Desafio 2: Instalação no modo não assistido (Unattended Installation)
 * **Ocorrência:** O assistente de instalação pulou etapas tradicionais, como a configuração manual das partições e a escolha do layout do teclado.
 * **Causa:** O VirtualBox possui um recurso de instalação automatizada que foi ativado assim que reconheceu a ISO do Ubuntu.
 * **Solução:** Optamos por manter o sistema gerado automaticamente, utilizando a conta padrão `vboxuser` criada pelo hipervisor. O comportamento foi apenas documentado, já que não impediu a realização e validação da prática.
 
----
+
+## 7. Conclusão
+A prática atingiu todos os objetivos propostos, oferecendo uma visão clara de como um hipervisor do tipo 2 opera na abstração e distribuição de recursos físicos (CPU, RAM e disco) para sistemas virtualizados. A experiência com a resolução do problema de falta de RAM ressaltou a importância do planejamento de hardware virtual. Ao final, a validação via CLI provou que a rede, os diretórios e os gerenciadores de pacotes do Ubuntu Server 26.04 LTS estão totalmente operacionais, deixando o ambiente pronto para futuras configurações de serviços de rede na disciplina.
 
 ## 7. Conclusão
 A prática atingiu todos os objetivos propostos, oferecendo uma visão clara de como um hipervisor do tipo 2 opera na abstração e distribuição de recursos físicos (CPU, RAM e disco) para sistemas virtualizados. A experiência com a resolução do problema de falta de RAM ressaltou a importância do planejamento de hardware virtual. Ao final, a validação via CLI provou que a rede, os diretórios e os gerenciadores de pacotes do Ubuntu Server 26.04 LTS estão totalmente operacionais, deixando o ambiente pronto para futuras configurações de serviços de rede na disciplina.
