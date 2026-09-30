@@ -1,4 +1,4 @@
-# Relatório Técnico: Manipulação de Arquivos e Automação de Usuários no Linux
+# Relatório Técnico: Acesso Remoto SSH com Redirecionamento de Portas e Diagnóstico de Rede
 
 ## 1. Identificação do Aluno
 * **Nome Completo:** Sarah Amorim dos Santos
